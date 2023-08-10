@@ -24,21 +24,22 @@ data = {
  },
 }
 
-wb = Workbook()
-ws = wb.active
-ws.title = "Grades" #başlık
+w1 = Workbook()
+w2 = w1.active
+w2.title = "Grades" #başlık
 headings = ['Name'] + list(data['Bilgi'].keys())
-ws.append(headings)
+w2.append(headings)
 
 for person in data:
  grades = list(data[person].values())
- ws.append([person] + grades)
+ w2.append([person] + grades)
 
 for col in range(2, len(data['Bilgi']) + 2):
  char = get_column_letter(col)
- ws[char + "7"] = f"=SUM({char + '2'}:{char + '6'})/{len(data)}"
+ w2[char + "7"] = f"=SUM({char + '2'}:{char + '6'})/{len(data)}"
 
 for col in range(1, 6):
- ws[get_column_letter(col) + '1'].font = Font(bold=True, color="0099CCFF")
+ w2[get_column_letter(col) + '1'].font = Font(bold=True, color="0099CCFF")
 
-wb.save("Yeniexcel.xlsx") #dosya oluşum yeri başlığı kendiniz verin.
+w1.save("Yeniexcel.xlsx") #dosya oluşum yeri başlığı kendiniz verin.
+
